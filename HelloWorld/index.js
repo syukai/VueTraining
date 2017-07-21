@@ -79,3 +79,17 @@ var appfilter = new Vue({
         }
     }
 });
+
+var appcompute = new Vue({
+    el:"#app-compute",
+    data:{
+        v1:'',
+        v2:'',
+        v3:''
+    },
+    computed:{
+        combine_message: function(){
+            return "v1:[" + this.v1 + "] v2:[" + this.v2 + "] v3:[" + this.v3 + "]";
+        }
+    }
+});
