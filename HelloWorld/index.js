@@ -110,7 +110,10 @@ var worklist=
         //     </tr>'
         template:'<tr>\
             <th>{{worktime.name}}</th>\
-            <workbox v-for="n in 10" v-bind:worktime=worktime></workbox>\
+            <workbox v-for="(n,index) in 10"\
+                v-bind:worktime=worktime\
+                v-bind:key="index">\
+            </workbox>\
             </tr>'
         // template:'<tr>\
         //     <th>{{worktime.name}}</th>\

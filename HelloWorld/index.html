@@ -74,7 +74,7 @@
 
 <table id="myapp-with-component">
 	<h3>myapp-with-component</h3>
-	<tr is='worklist' v-for='worktime in workers' v-bind:worktime=worktime></tr>
+	<tr is='worklist' v-for='worktime in workers' v-bind:worktime=worktime v-bind:key="worktime.workerid"></tr>
 	<tr><th>static row</th><td is="workbox" v-bind:worktime=workers[0]></td></tr>
 </table>
 
