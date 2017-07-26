@@ -10,6 +10,12 @@
 	.text-danger{
 		background-color:lightpink;
 	}
+	table#myapp-with-component, table#myapp-with-component td, table#myapp-with-component th{
+		border:1px solid black;
+	}
+	.active{
+		background-color:#ffa0a0;
+	}
 </style>
 </head>
 <body>
@@ -66,7 +72,7 @@
 
 <div id="app-compute">
 	<h3>app-compute</h3>
-	<div><input type="text" v-model="v1" /></div>
+	<div><input type="text" v-model="v1" v-once /></div>
 	<div><input type="text" v-model="v2" /></div>
 	<div><input type="text" v-model="v3" /></div>
 	<!-- <button type="button" @click="combine"></button> -->
@@ -112,6 +118,13 @@
 
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<table id="myapp-with-component">
+	<h3>myapp-with-component</h3>
+	<tr is='worklist' v-for='worktime in workers' v-bind:worktime=worktime v-bind:key="worktime.workerid"></tr>
+	<tr><th>static row</th><td is="workbox" v-bind:worktime=workers[0]></td></tr>
+</table>
+
+
 <script src="./index.js"></script>
 </body>
 </html>
