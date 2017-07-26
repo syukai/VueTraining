@@ -93,3 +93,100 @@ var appcompute = new Vue({
         }
     }
 });
+
+var nameapp_1 = new Vue({
+    el:"#nameapp-1",
+    data:{
+        firstName:"taro",
+        lastName:"Yamamoto",
+        fullName:"Yamamoto taro"
+    },
+    watch:{
+        firstName: function (val) {
+            this.fullName = val + ' ' + this.lastName
+        },
+        lastName: function (val) {
+          this.fullName = this.firstName + ' ' + val
+        }
+    }
+});
+
+var nameapp_2 = new Vue({
+    el:"#nameapp-2",
+    data:{
+        firstName:"taro",
+        lastName:"Yamamoto"
+    },
+    computed:{
+        fullName:{
+            get: function(){
+                return this.lastName + " " + this.firstName;
+            },
+            set: function(value){
+                var names = value.split(' ');
+                this.lastName = names[0];
+                this.firstName = names[names.length -1];
+            }
+        }
+    }
+});
+
+var watchExample = new Vue({
+    el:"#watch-example",
+    data:{
+        input_value:"",
+        return_value:"please input."
+    },
+    watch:{
+        input_value:function(value){
+            this.return_value = "Now entering...";
+            this.getReturn();
+        }
+    },
+    methods:{
+        getReturn:_.debounce(
+            function(){
+                this.return_value = "Now entering too...";
+                var vm = this;
+                axios.get("https://yesno.wtf/api")
+                    .then(function(response){
+                        // vm.return_value = "get return value!";
+                        vm.return_value = vb.input_value;
+                    }).catch(function(exception){
+                        vm.return_value = "Exception throwed.";
+                    });
+
+                // this.return_value = this.input_value;
+            }
+            ,500
+        )
+    }
+});
+
+var watch2computed = new Vue({
+    el:"#watch-example_to_computed",
+    data:{
+        input_value:"please input here",
+        // return_value:"get return here"
+    },
+    computed:{
+        return_value:function(){
+            return this.input_value;
+
+            // returnが必要なので非同期の結果を返せない
+            // var vm = this;
+            // axios.get("https://yesno.wtf/api")
+            //     .then(function(response){
+            //         vm.return_value = vm.input_value;
+            //     })
+        }
+    }
+});
+
+var dynamicClass = new Vue({
+    el:"#dynamicClass",
+    data:{
+        isActive:true,
+        hasError:true
+    }
+});

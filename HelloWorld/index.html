@@ -3,6 +3,14 @@
 <head>
 	<meta charset="utf-8">
 <script src="https://unpkg.com/vue"></script>
+<style>
+	.active{
+		color:red;
+	}
+	.text-danger{
+		background-color:lightpink;
+	}
+</style>
 </head>
 <body>
 
@@ -40,8 +48,9 @@
 </div>
 
 <div id="app-7">
+	<h3>app-7</h3>
 	<ol>
-		<todo-item v-for="grocery in groceryList" v-bind:todo="grocery"></todo-item>
+		<todo-item v-for="grocery in groceryList" v-bind:todo="grocery" v-bind:key="grocery.id"></todo-item>
 	</ol>
 </div>
 
@@ -64,6 +73,45 @@
 	<label>{{combine_message}}</label>
 </div>
 
+<div id="nameapp-1"><h3>nameapp-1</h3>{{ fullName }}
+	<div><input type="text" v-model="firstName" /></div>
+	<div><input type="text" v-model="lastName" /> </div>
+</div>
+
+<div id="nameapp-2"><h3>nameapp-2</h3>{{ fullName }}
+	<div><input type="text" v-model="firstName" /></div>
+	<div><input type="text" v-model="lastName" /> </div>
+	<div><input type="text" v-model="fullName" /></div>
+</div>
+
+<div id="watch-example"><h3>watch-example</h3>
+  <p>
+    Input wait
+    <input v-model="input_value">
+  </p>
+  <p>{{ return_value }}</p>
+</div>
+
+<div id="watch-example_to_computed">
+	<h3>watch-example to computed</h3>
+  <p>
+    Input wait
+    <input v-model="input_value">
+  </p>
+  <p>{{ return_value }}</p>
+</div>
+
+<div id="dynamicClass" class="static"
+     v-bind:class="{ active: isActive, 'text-danger': hasError }">
+	<h3>dynamicClass</h3>
+	<input type="checkbox" v-model="isActive" />
+	<input type="checkbox" v-model="hasError" />
+</div>
+
+<footer style="height:50px"></footer>
+
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script src="./index.js"></script>
 </body>
 </html>
