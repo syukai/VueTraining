@@ -114,6 +114,22 @@
 	<input type="checkbox" v-model="hasError" />
 </div>
 
+
+
+<div id="parent-child-communication">
+	<h3>Vue.js のコンポーネントと親子間データの送受信</h3>
+	<a href="http://chibinowa.net/note/vuejs/vue-4.html#103504d8e4e80f9d402f3e39f1196084-1">-親子間でデータを送受信するサンプル</a>
+  <div class="box">
+    <h4>ここは親のスコープ</h4>
+    <p>{{ childMessage }}</p>
+    <child-component
+      :parent-message="parentMessage"
+      @send-message="getChildMessage"></child-component>
+  </div>
+</div>
+
+
+
 <footer style="height:50px"></footer>
 
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>

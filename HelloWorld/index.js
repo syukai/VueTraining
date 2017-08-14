@@ -261,3 +261,55 @@ var myappWithComponent = new Vue({
 //   '
 // })
 
+
+/*
+ * Vue.js のコンポーネントと親子間データの送受信
+ */
+/* 子コンポーネント */
+var childComp = Vue.extend({
+  /* 親から parentMessage を受け取る */
+  props: ['parentMessage'],
+  template: '<div class="box"><h4>ここは子のスコープ</h4>' +
+    '<p>{{ parentMessage }}</p><p>{{childSelf}}</p></div>',
+  /* コンポーネントのデータはオブジェクトを返す関数にする */
+  data: function() {
+    return {
+      childMessage: 'これは子のデータだよ',
+      childOriginal: 'これも子のデータ'
+    }
+  },
+  created: function() {
+    this.$emit('send-message', this.childMessage)
+    /* 渡した後に変更したら再度emitしないと反映されない */
+    /* オブジェクトだと反映されるけどホントは良くない */
+    /* こういう管理が大変になってきた場合は状態管理を使おう！ */
+    this.childMessage = '子がデータを変更したよ'
+  },
+  computed:{
+      childSelf:function(){
+          this.$emit('send-message', this.childOriginal);
+          return this.childOriginal;
+      }
+  }
+})
+/* 親のルートコンストラクタ */
+var pcCommunication = new Vue({
+  el: '#parent-child-communication',
+  data: {
+    /* 親が持っているデータ */
+    parentMessage: 'これは親のデータだよ',
+    /* 子から受け取ったデータを保管する為の空データ */
+    childMessage: ''
+  },
+  components: {
+    /* 子コンポーネントを登録する */
+    'child-component': childComp
+  },
+  methods: {
+    /* 子がイベントを発火した時に実行したい処理 */
+    getChildMessage: function(text) {
+      this.childMessage = text
+    }
+  }
+})
+
