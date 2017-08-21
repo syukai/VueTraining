@@ -1,22 +1,23 @@
 {
-  "name": "webpack",
+  "name": "webpacktrial",
   "version": "1.0.0",
-  "description": "webpack training",
-  "main": "entry.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server -o "
   },
-  "keywords": [
-    "webpack"
-  ],
-  "author": "d_hirayama",
+  "author": "",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/syukai/VueTraining.git"
-  },
   "devDependencies": {
-    "css-loader": "^0.28.4",
-    "style-loader": "^0.18.2"
+    "css-loader": "^0.28.5",
+    "http-server": "^0.7.4",
+    "style-loader": "^0.18.2",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "vue": "^2.4.2"
   }
 }

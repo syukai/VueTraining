@@ -1,0 +1,19 @@
+参考サイト：https://ginpen.com/2016/12/28/vue-webpack-boilerplate/
+
+＜事前準備＞
+グローバルにvue-cliをインストール
+npm install -g vue-cli
+
+＜環境作成＞
+vue init webpack my-project
+※npm initとかwebpackの設定とか全部これでやってくれる！楽ちん！
+　Babelもminimizeもurl-loaderもvueの組み込みも難読化も！
+　でもhtmlまでbundleしよるんでやりすぎかな・・・
+
+＜開発サーバー起動＞
+npm run dev
+
+＜ビルド＞
+npm run build
+
+
